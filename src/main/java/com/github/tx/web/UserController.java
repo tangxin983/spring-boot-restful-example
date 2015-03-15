@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,11 +43,7 @@ public class UserController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.CREATED)
 	public User update(@PathVariable("id") Long id, @RequestBody User entity) {
-		User old = service.findOne(id);
-		Assert.notNull(old);
-		old.setEmail(entity.getEmail());
-		old.setUserName(entity.getUserName());
-		return service.save(entity);
+		return service.update(id, entity);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

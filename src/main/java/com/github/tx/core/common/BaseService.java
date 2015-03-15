@@ -23,7 +23,7 @@ public abstract class BaseService<T, ID extends Serializable> {
 	private CrudRepository<T, ID> repo;
 
 	/**
-	 * 新增或更新记录(主键为null则新增否则更新)
+	 * 新增记录
 	 * 
 	 * @param entity
 	 *            实体
@@ -31,6 +31,19 @@ public abstract class BaseService<T, ID extends Serializable> {
 	 */
 	@Transactional
 	public T save(T entity) {
+		return repo.save(entity);
+	}
+	
+	/**
+	 * 更新记录
+	 * @param id 主键
+	 * @param updated 要更新的实体信息
+	 * @return 更新后的实体
+	 */
+	@Transactional
+	public T update(ID id, T updated) {
+		T entity = repo.findOne(id);
+		//将更新代码放到Entity中
 		return repo.save(entity);
 	}
 
