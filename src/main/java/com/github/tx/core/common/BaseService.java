@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -20,7 +20,7 @@ public abstract class BaseService<T, ID extends Serializable> {
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private CrudRepository<T, ID> repo;
+	private JpaRepository<T, ID> repo;
 
 	/**
 	 * 新增记录
@@ -43,7 +43,7 @@ public abstract class BaseService<T, ID extends Serializable> {
 	@Transactional
 	public T update(ID id, T updated) {
 		T entity = repo.findOne(id);
-		//将更新代码放到Entity中
+		//TODO 将更新代码放到Entity中
 		return repo.save(entity);
 	}
 

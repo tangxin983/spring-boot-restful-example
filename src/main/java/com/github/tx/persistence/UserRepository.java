@@ -1,6 +1,6 @@
 package com.github.tx.persistence;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.github.tx.entity.User;
 
@@ -10,6 +10,6 @@ import com.github.tx.entity.User;
  * @since 2015年1月27日
  */
 
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
 }
