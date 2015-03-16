@@ -1,7 +1,7 @@
 spring-boot-webapp
 =================
 
-example for spring-boot &amp; mybatis
+example for spring-boot &amp; spring data jpa
 
 #### 1、use maven to creating an executable jar(skip test)
 
