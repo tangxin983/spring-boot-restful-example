@@ -1,6 +1,7 @@
 package com.github.tx.core.common;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ public abstract class BaseService<T, ID extends Serializable> {
 	private JpaRepository<T, ID> repo;
 
 	/**
-	 * 新增记录
+	 * 新增或更新记录(主键为null则新增否则更新)
 	 * 
 	 * @param entity
 	 *            实体
@@ -33,20 +34,7 @@ public abstract class BaseService<T, ID extends Serializable> {
 	public T save(T entity) {
 		return repo.save(entity);
 	}
-	
-	/**
-	 * 更新记录
-	 * @param id 主键
-	 * @param updated 要更新的实体信息
-	 * @return 更新后的实体
-	 */
-	@Transactional
-	public T update(ID id, T updated) {
-		T entity = repo.findOne(id);
-		//TODO 将更新代码放到Entity中
-		return repo.save(entity);
-	}
-
+	 
 	/**
 	 * 批量新增或更新记录(主键为null则新增否则更新)
 	 * 
@@ -55,7 +43,7 @@ public abstract class BaseService<T, ID extends Serializable> {
 	 * @return 保存后的实体集合
 	 */
 	@Transactional
-	public Iterable<T> save(Iterable<T> entities) {
+	public List<T> save(Iterable<T> entities) {
 		return repo.save(entities);
 	}
 
@@ -75,7 +63,7 @@ public abstract class BaseService<T, ID extends Serializable> {
 	 * 
 	 * @return 实体集合
 	 */
-	public Iterable<T> findAll() {
+	public List<T> findAll() {
 		return repo.findAll();
 	}
 
