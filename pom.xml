@@ -7,7 +7,7 @@
 		<version>1.2.0.RELEASE</version>
 	</parent>
 	<groupId>com.github.tx</groupId>
-	<artifactId>spring-boot-webapp</artifactId>
+	<artifactId>spring-boot-restful-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
