@@ -56,8 +56,10 @@ public class WebAppIntegrationTests {
 
 	@Test
 	public void testPost() {
-		User user = template.postForObject("http://localhost:8080/user",
-				new User("newuser@163.com", "newuser"), User.class);
+		User newUser = new User();
+		newUser.setEmail("newuser@163.com");
+		newUser.setUserName("newuser");
+		User user = template.postForObject("http://localhost:8080/user", newUser, User.class);
 		logger.info("======testPost======");
 		logger.info("new user is:{}", user.toString());
 		logger.info("======testPost======");

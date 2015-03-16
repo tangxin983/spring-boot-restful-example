@@ -18,7 +18,7 @@ public class Application implements CommandLineRunner {
 		 * 使用系统属性来指定要激活的profile,如果不指定则使用默认profile
 		 * 激活后application-{profile}.properties将会覆盖默认的application.properties
 		 */
-		System.setProperty("spring.profiles.active", "dev");
+//		System.setProperty("spring.profiles.active", "dev");
 		SpringApplication.run(Application.class, args);
 	}
 
