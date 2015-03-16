@@ -5,8 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
+@Table(name="sys_user")  
 public class User {
 
 	@Id
@@ -17,6 +21,10 @@ public class User {
 
 	@Column(name = "user_name")
 	private String userName;
+
+	public User() {
+		super();
+	}
 
 	public User(String email, String userName) {
 		this.email = email;
@@ -47,4 +55,8 @@ public class User {
 		this.userName = userName;
 	}
 
+	@Override
+	public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }
