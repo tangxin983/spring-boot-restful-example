@@ -1,5 +1,7 @@
 package com.github.tx.web;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ import com.github.tx.service.UserService;
  * GET(200) /collection：返回资源对象的列表（数组）<p>
  * GET(200) /collection/{id}：返回单个资源对象<p>
  * POST(201) /collection：返回新生成的资源对象<p>
- * PUT(201) /collection/{id}：返回完整的资源对象<p>
+ * PUT(201) /collection：返回更新后的资源对象<p>
  * DELETE(204) /collection/{id}：返回一个空文档<p>
  * @author tangx
  * @since 2014年12月23日
@@ -40,10 +42,10 @@ public class UserController {
 		return service.save(entity);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.CREATED)
-	public User update(@PathVariable("id") Long id, @RequestBody User entity) {
-		return service.update(id, entity);
+	public User update(@RequestBody User entity) {
+		return service.save(entity);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -52,7 +54,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public Iterable<User> findAll() {
+	public List<User> findAll() {
 		return service.findAll();
 	}
 
